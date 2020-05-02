@@ -7,12 +7,21 @@ import Characters from './components/Character';
 
 
 
+const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%`
+    ;
+
 const Header = styled.h1`
-text-align: center;
-color: black;
-font-family: 'Orbitron', sans-serif;
-font-size: 50px;
-`;
+    text-align: center;
+    color: yellow;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    width: 100%;
+    background-color: black;`
+    ;
 
 
 const App = () => {
@@ -24,7 +33,7 @@ const App = () => {
   // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
-  useEffect(() => { 
+  useEffect(() => {
     const SET_URL = "https://swapi.py4e.com/api/people/?format=json";
     axios.get(SET_URL)
       .then(function (response) {
@@ -34,17 +43,15 @@ const App = () => {
       .catch(function (error) {
         console.log(error, 'Could not fetch data')
       }, []);
-  
-})
 
+  })
 
   return (
     <div className="App">
       <Header className="Header">React Wars</Header>
-      <Characters data={characters} />
-     
-    
-     
+      <Container>
+        {characters.map(characters => <Characters props={characters} />)}
+      </Container>
     </div>
   );
 }
