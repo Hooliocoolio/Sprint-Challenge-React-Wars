@@ -43,17 +43,15 @@ const App = () => {
       .catch(function (error) {
         console.log(error, 'Could not fetch data')
       }, []);
-
   })
 
   return (
     <div className="App">
       <Header className="Header">React Wars</Header>
-      <Container>
+      <Container >
         {characters.map(characters => <Characters props={characters} />)}
       </Container>
     </div>
   );
 }
-
 export default App;
